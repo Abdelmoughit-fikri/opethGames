@@ -68,7 +68,7 @@ const GameDetails = () => {
             rounded-full
             p-2"
             >
-              Buy now
+            Add to cart
             </button>
           </div>
         </div>
