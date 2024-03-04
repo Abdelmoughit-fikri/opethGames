@@ -5,11 +5,10 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import SearchInput from "./SearchInput";
 interface Props {
-  onSearchNavBar : (onSearch : string | null) => void
+  onSearchNavBar: (onSearch: string | null) => void;
 }
 
-
-const NavBar = ({onSearchNavBar} : Props) => {
+const NavBar = ({ onSearchNavBar }: Props) => {
   const router = useRouter();
   //
   const ref = useRef<HTMLInputElement>(null);
@@ -30,7 +29,7 @@ const NavBar = ({onSearchNavBar} : Props) => {
           />
         </Link>
 
-      <SearchInput onSearch={(value) => onSearchNavBar(value)}/>
+        <SearchInput onSearch={(value) => onSearchNavBar(value)} />
 
         <ToggleDarkMode />
       </div>

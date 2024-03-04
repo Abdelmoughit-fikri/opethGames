@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import CriticScore from "./CriticScore";
 import CropImage from "@/services/crop-image";
+import ExpandableText from "../../helpers/ExpandableText";
 
 interface Props {
   game: resultsTypes;
@@ -32,8 +33,8 @@ const GameCard = ({ game }: Props) => {
           height={170}
           className="mx-auto rounded-[15px] object-contain"
         />
-        <h1 className="font-semibold text-black dark:text-white mt-[7px]">
-          {game.name}
+        <h1 className="font-semibold text-black dark:text-white mt-[7px] ml-[17px]">
+          <ExpandableText>{game.name}</ExpandableText>
         </h1>
         <div>
           {game.parent_Platforms &&

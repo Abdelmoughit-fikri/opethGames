@@ -6,17 +6,26 @@ import { useState } from "react";
 import { PlatformChild } from "@/customHooks/data/usePlatforms";
 import useGames from "@/customHooks/data/useGames";
 import Heading from "./Heading";
+import {
+  ReadonlyURLSearchParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
+import Link from "next/link";
 
 interface Props {
   selectedGenre: GenresResultsType | null;
   enteredText: string | null;
 }
 const HomePageGames = ({ selectedGenre, enteredText }: Props) => {
+  //
+  const router = useRouter();
+
+  //
   const [selectedPlatform, setSelectedPlatform] =
     useState<PlatformChild | null>(null);
-  const [selectedTypeState, setSelectedTypeState] = useState<string | null>(
-    null
-  );
+  const [selectedTypeState] = useState<string | null>(null);
   const { data } = useGames(
     selectedGenre,
     selectedPlatform,
@@ -47,17 +56,47 @@ const HomePageGames = ({ selectedGenre, enteredText }: Props) => {
         >
           {data.length > 0 ? (
             data.map((game) => {
-              return <GameCard key={game.id} game={game} />;
+              return (
+                <Link
+                  key={game.id}
+                  href={{
+                    pathname: `/Games`,
+                    query: {
+                      id: game.id,
+                      name: game.name,
+                      image: game.background_image,
+                      rating: game.metacritic,
+                    },
+                  }}
+                >
+                  <GameCard game={game} />
+                </Link>
+              );
             })
           ) : (
-            <h1 className="dark:text-white  text-[3rem] w-[1000px] h-[67vh]">
-              {selectedPlatform?.name
-                ? ` Oops ${enteredText} is not available in ${
-                    selectedPlatform?.name
-                  }${" "}
-              platform! Try another search...`
-                : `Oops ${enteredText} is not available among our games. Please try another search...`}
-            </h1>
+            <div>
+              {" "}
+              <h1 className="dark:text-white  text-[3rem] w-[1000px] h-[67vh]">
+                {selectedPlatform?.name || selectedGenre?.name
+                  ? ` Oops ${enteredText} is not available in ${
+                      selectedPlatform?.name || selectedGenre?.name
+                    }${" "}
+              ${
+                selectedPlatform?.name
+                  ? "platform"
+                  : selectedGenre?.name
+                  ? "genre"
+                  : null
+              } Try another search...`
+                  : `Oops ${enteredText} is not available among our games. Please try another search...`}
+                <button
+                  className="dark:text-white text-[25px] underline hover:no-underline"
+                  onClick={() => window.location.reload()}
+                >
+                  Back to home page
+                </button>
+              </h1>
+            </div>
           )}
         </div>
       </div>
