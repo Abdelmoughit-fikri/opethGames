@@ -35,6 +35,7 @@ const GameDetails = () => {
             <div className="dark:text-white">{name}</div>
             <div className="dark:text-white">{rating}</div>
             <div className="dark:text-white">{platform}</div>
+            <div>Price : 99$</div>
           </div>
         </div>
         {/*  */}
