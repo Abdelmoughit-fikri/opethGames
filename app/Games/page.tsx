@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import GameDetails from "./GameDetails";
 import NavBar from "../components/NavBar/NavBar";
 import useEnteredText from "@/customHooks/state between two components/useEnteredText";

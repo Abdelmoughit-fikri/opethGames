@@ -3,10 +3,10 @@ import { MoonIcon, SunIcon } from "@heroicons/react/16/solid";
 import React, { useEffect, useState } from "react";
 
 const ToggleDarkMode = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   //
   useEffect(() => {
-    const theme = localStorage.getItem("theme");
+    const theme = localStorage.getItem("theme" ,);
     if (theme === "dark") setDarkMode(true);
   }, []);
   //
