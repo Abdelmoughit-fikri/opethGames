@@ -1,7 +1,7 @@
 "use client";
 import CropImage from "@/services/crop-image";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 
@@ -61,15 +61,17 @@ const GameDetails = () => {
               deleniti nulla quas fuga consequatur excepturi? Sapiente,
               pariatur.
             </div>
-            <button
+            <Link
+              href={"/Cart"}
               className="w-full dark:text-white dark:bg-slate-800
               bg-teal-500
               text-white
             rounded-full
+            text-center
             p-2"
             >
-            Add to cart
-            </button>
+              Add to cart
+            </Link>
           </div>
         </div>
       </div>
