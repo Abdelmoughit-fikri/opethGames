@@ -13,6 +13,7 @@ import {
   useSearchParams,
 } from "next/navigation";
 import Link from "next/link";
+import { ShoppingBagIcon } from "@heroicons/react/16/solid";
 
 interface Props {
   selectedGenre: GenresResultsType | null;
@@ -26,7 +27,7 @@ const HomePageGames = ({ selectedGenre, enteredText }: Props) => {
   const [selectedPlatform, setSelectedPlatform] =
     useState<PlatformChild | null>(null);
   const [selectedTypeState] = useState<string | null>(null);
-  const { data } = useGames(
+  const { data, isLoading } = useGames(
     selectedGenre,
     selectedPlatform,
     selectedTypeState,
@@ -75,7 +76,6 @@ const HomePageGames = ({ selectedGenre, enteredText }: Props) => {
             })
           ) : (
             <div>
-              {" "}
               <h1 className="dark:text-white  text-[3rem] w-[1000px] h-[67vh]">
                 {selectedPlatform?.name || selectedGenre?.name
                   ? ` Oops ${enteredText} is not available in ${
@@ -91,7 +91,7 @@ const HomePageGames = ({ selectedGenre, enteredText }: Props) => {
                   : `Oops ${enteredText} is not available among our games. Please try another search...`}
                 <button
                   className="dark:text-white text-[25px] underline hover:no-underline"
-                  onClick={() => window.location.reload()}
+                  onClick={() => window.close()}
                 >
                   Back to home page
                 </button>

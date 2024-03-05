@@ -1,4 +1,5 @@
 "use client";
+import { useCart } from "@/Context/CartContextModule";
 import CropImage from "@/services/crop-image";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +7,10 @@ import { useSearchParams } from "next/navigation";
 import React from "react";
 
 const GameDetails = () => {
+  //
+  const { cartTotalQ } = useCart();
+  console.log(cartTotalQ);
+  //
   const searchParams = useSearchParams();
   const name = searchParams?.get("name") as string;
   const image = searchParams?.get("image");
@@ -69,7 +74,8 @@ const GameDetails = () => {
               text-white
             rounded-full
             text-center
-            p-2"
+            p-2
+            hover:scale-105"
             >
               Add to cart
             </Link>

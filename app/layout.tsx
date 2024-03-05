@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
+import CartContextModule from "@/Context/CartContextModule";
 
 const inter = Poppins({ subsets: ["latin"], weight: ["500"] });
 
@@ -16,7 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <CartContextModule>
+          {children}
+        </CartContextModule>
+      </body>
     </html>
   );
 }

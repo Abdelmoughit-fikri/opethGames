@@ -27,12 +27,12 @@ const useGames = (selectedGenre: GenresResultsType | null,
   selectedPlatformChild: PlatformChild | null,
   selectedType: string | null,
   enteredText: string | null,) => {
-  const { data } = useData<resultsTypes>(
+  const { data , isLoading } = useData<resultsTypes>(
     `/games`,
     { params: { genres: selectedGenre?.id, platforms: selectedPlatformChild?.id, types: selectedType, search: enteredText } },
     [selectedGenre?.id, selectedPlatformChild?.id, selectedType, enteredText]
   );
-  return { data };
+  return { data , isLoading};
 };
 
 export default useGames;
