@@ -6,16 +6,30 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 
+export interface gameDataTypes {
+  id: string | null;
+  name: string;
+  image: string | null;
+  rating: string | null;
+}
+
 const GameDetails = () => {
   //
-  const { cartTotalQ } = useCart();
-  console.log(cartTotalQ);
+  const { handleAddProductToCart, cartProducts } = useCart();
   //
   const searchParams = useSearchParams();
+  const id = searchParams?.get("id");
   const name = searchParams?.get("name") as string;
   const image = searchParams?.get("image");
   const rating = searchParams?.get("rating");
   const platform = searchParams?.get("platform");
+
+  const gameData: gameDataTypes = {
+    id,
+    name,
+    image,
+    rating,
+  };
   return (
     <div className="h-[100vh] dark:bg-gray-900 px-[12rem] py-[2rem]">
       <div
@@ -68,7 +82,8 @@ const GameDetails = () => {
               pariatur.
             </div>
             <Link
-              href={"/Cart"}
+              onClick={() => handleAddProductToCart(gameData)}
+              href={""}
               className="w-full dark:text-white dark:bg-slate-800
               bg-teal-500
               text-white
